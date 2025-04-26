@@ -4,6 +4,8 @@ function suma(x) {
 }
 
 const suma = (x) => x + 1;
+console.log("Suma (10 + 1):", suma(10));
+
 
 // 2. Dado el siguiente arreglo. Mostrar solo los valores del objeto paciente usando for..in
 
@@ -15,8 +17,9 @@ let paciente = {
     tratamiento: "Medicación diaria"
 };
 
+console.log("Valores del objeto paciente:");
 for (let propiedad in paciente) {
-    console.log(propiedad, paciente[propiedad]);
+    console.log(paciente[propiedad]);
 }
 
 
@@ -24,36 +27,35 @@ for (let propiedad in paciente) {
 
 let carros = [
     {
-        color: "morado",
-        modelo: 2020,
+        color: "azul",
+        modelo: 2024,
         marca: "toyota"
     },
     {
         color: "negro",
-        modelo: 2010,
+        modelo: 2023,
         marca: "toyota"
     },
     {
         color: "blanco",
-        modelo: 2020,
+        modelo: 2022,
         marca: "toyota"
     },
 ];
 
-let Carro =  {
+carros.unshift({
     color: "Plomo",
-    modelo: 2024,
+    modelo: 2021,
     marca: "Chevrolet"
-};
+});
 
-carros.unshift(Carro);
+console.log("Arreglo de carros actualizado:");
 console.log(carros);
-
 
  // 4. Con el nuevo arreglo que obtuviste en el ejercicio 3  crear una funcion que me devuelva 
  // y muestre en consola el numero de carros modelo 2020
 
- let carros1 = [
+let carros1 = [
     {
         color: "Plomo",
         modelo: 2024,
@@ -76,22 +78,28 @@ console.log(carros);
     },
 ];
 
-function contarMod2020(arr) {
-    let c = 0;
-    arr.forEach(carro => { if (carro.modelo === 2020) c++; });
-    console.log("Carros modelo 2020:", c);
+function contarModelos2020(arr) {
+    let contador = 0;
+    for (let carro of arr) {
+        if (carro.modelo === 2020) {
+            contador++;
+        }
+    }
+    console.log("Número de carros modelo 2020:", contador);
 }
-contarMod2020(carros1);
 
-
+contarModelos2020(carros1);
 
  // 5. Dado una arreglo de nombres ["argentia","bolivia","colombia"] realizar un funcion callbak para
  // pasar el arreglo de minisculas a mayusculas.
 
-let nombres = ["argentia", "bolivia", "colombia"];
+let nombres = ["argentina", "bolivia", "colombia"];
 
-let nombresMayus = nombres.map(function(nombre) {
-    return nombre.toUpperCase();
-});
+function convertirAMayusculas(arr, callback) {
+    return callback(arr);
+}
 
-console.log(nombresMayus);
+const Mayuscula = (array) => array.map(pais => pais.toUpperCase());
+
+console.log("Paises en mayúsculas:");
+console.log(convertirAMayusculas(nombres, Mayuscula));
